@@ -1,0 +1,11 @@
+.navbar-item {
+    color: #3ddc97; /* green text */
+}
+.button.is-primary {
+    background-color: #e74c3c; /* red button */
+    color: #fff;
+}
+.button.is-light {
+    border-color: #3ddc97; /* green outline */
+    color: #3ddc97;
+}
