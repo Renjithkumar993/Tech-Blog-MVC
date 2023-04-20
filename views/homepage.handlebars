@@ -1,36 +1,10 @@
-
-
-
-
-
+  
+<section>
+<a href="/post/{{id}}">
 <div class="container">
-
-<div class="card">
-  <div class="card-content">
-    <p class="title">
-      Post Title
-    </p>
-    <p class="subtitle">
-      Posted by Username on April 18, 2023
-    </p>
-    <div class="content">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-    </div>
-  </div>
-  <footer class="card-footer">
-    <form class="card-footer-item">
-      <div class="field has-addons">
-        <div class="control is-expanded">
-          <input class="input" type="text" placeholder="Leave a comment...">
-        </div>
-        <div class="control">
-          <button type="submit" class="button is-info">
-            Post
-          </button>
-        </div>
-      </div>
-    </form>
-  </footer>
-</div>
-
-</div>
+{{#each postData as |postD| }}
+{{> post-details}}
+{{/each}}
+</div> 
+</a>
+</section>

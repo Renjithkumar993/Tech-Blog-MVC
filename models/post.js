@@ -27,14 +27,6 @@ Post.init(
       },
       allowNull: false,
     },
-    commentID: {
-      type :DataTypes.INTEGER,
-      references:{
-        model : "comment",
-        key : "id"
-      }
-    },
-
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,

@@ -11,10 +11,12 @@
 <body>
     <nav class="navbar has-background-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item" href="#">
-            <h1 class="title is-1 has-text-danger ">Tech-Blog</h1>
-          </a>
-      
+<a class="navbar-item" href="/">
+  <h1 class="title is-1 has-text-light is-family-monospace has-text-weight-bold has-text-centered" style="background-color: red; color: #FFFFFF; border-radius: 5px; padding: 10px;">Tech-Blog</h1>
+</a>
+
+
+
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true" class="has-text-danger "></span>
             <span aria-hidden="true" class="has-text-danger "></span>
@@ -24,23 +26,34 @@
       
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
+                {{#if loggedIn}}
             <a class="navbar-item ">
               Home
             </a>
-      
+   
             <a class="navbar-item ">
               DashBoard
             </a>
+{{/if}}
           </div>
       
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-primary js-modal-trigger" data-target="modal-js-example1">
+          
+            {{#if loggedIn}}
+  <a class="button is-primary" id="logout">
+    Log out
+  </a>
+{{else}}
+  <a class="button is-primary" href="./login">
+    Log in
+  </a>
+        <a class="button is-primary" href="./signup">
                   <strong>Sign up</strong>
                 </a>
-                <a class="button is-primary js-modal-trigger signin-btn" data-target="modal-js-example">
-                  Log in
+{{/if}}
+
                 </a>
               </div>
             </div>
@@ -48,117 +61,19 @@
         </div>
       </nav>
      <main>
-
-<!-- {{!-- modal for sign in  --}} -->
-      <div class="modal" id="modal-js-example">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Log in to Tech Blog</p>
-            <button class="delete" aria-label="close"></button>
-          </header>
-          <section class="modal-card-body">
-          <form>
-              <div class="field">
-                <label class="label">Email</label>
-                <div class="control has-icons-left">
-                  <input class="input" type="email" placeholder="Email" required>
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                  </span>
-                </div>
-              </div>
-            
-              <div class="field">
-                <label class="label">Password</label>
-                <div class="control has-icons-left">
-                  <input class="input" type="password" placeholder="Password" required>
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                  </span>
-                </div>
-              </div>
-            
-              <div class="field">
-                <div class="control">
-                  <label class="checkbox">
-                    <input type="checkbox">
-                    Remember me
-                  </label>
-                </div>
-              </div>
-            
-              <div class="field">
-                <div class="control">
-                  <button class="button is-link">Log in</button>
-                </div>
-              </div>
-            </form>
-          </section>
-        </div>
-      </div>
+{{#if loggedIn}}
+   <h1> loggedIn </h1>
+        {{/if}}
 
 
-     
-<!-- modal for signup -->
-<div class="modal" id="modal-js-example1">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Sign up to Tech Blog</p>
-            <button class="delete" aria-label="close"></button>
-          </header>
-          <section class="modal-card-body">
 
-
-<form>
-  <div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Name" required>
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Email</label>
-    <div class="control has-icons-left">
-      <input class="input" type="email" placeholder="Email" required>
-      <span class="icon is-small is-left">
-        <i class="fas fa-envelope"></i>
-      </span>
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Password</label>
-    <div class="control has-icons-left">
-      <input class="input" type="password" placeholder="Password" required>
-      <span class="icon is-small is-left">
-        <i class="fas fa-lock"></i>
-      </span>
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Confirm Password</label>
-    <div class="control has-icons-left">
-      <input class="input" type="password" placeholder="Confirm Password" required>
-      <span class="icon is-small is-left">
-        <i class="fas fa-lock"></i>
-      </span>
-    </div>
-  </div>
-
-  <div class="field">
-    <div class="control">
-      <button class="button is-link  signup-btn">Sign up</button>
-    </div>
-  </div>
-</form>
 
 </section>
         </div>
       </div>
+<div class="error-message">
+
+</div>
 
 
         {{{body}}}
@@ -174,11 +89,12 @@
 
 
 
-
-
+  {{#if loggedIn}}
+  <script src="/logout.js"></script>
+  {{/if}}
+<script src="/script.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
-    <script src="./script.js"></script>
     
 </body>
 </html>

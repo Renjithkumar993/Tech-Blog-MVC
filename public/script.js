@@ -1,74 +1,76 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-    // Get all "navbar-burger" elements
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-  
-    // Add a click event on each of them
-    $navbarBurgers.forEach( el => {
-      el.addEventListener('click', () => {
-  
-        // Get the target from the "data-target" attribute
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-  
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
-  
-      });
-    });
-  
-  });
 
 
-  document.addEventListener('DOMContentLoaded', () => {
-    // Functions to open and close a modal
-    function openModal($el) {
-      $el.classList.add('is-active');
+
+  // document.querySelector('.signup-form').addEventListener('submit', async (event) => {
+  //   event.preventDefault();
+
+  
+  //   const username = document.querySelector('#username-signup').value.trim();
+  //   const email = document.querySelector('#email-signup').value.trim();
+  //   const password = document.querySelector('#password-signup').value.trim();
+  
+  //   // Validate the user's input
+  //   if (username.length < 3) {
+  //     return document.querySelector('#signup-error-message').textContent  = 'Password must be at least 8 characters long'
+  //   }
+  
+  //   if (!isValidEmail(email)) {
+  //     return document.querySelector('#signup-error-message').textContent  = 'Password must be at least 8 characters long'
+  //   }
+  
+  //   if (password.length < 8) {
+  //     return  document.querySelector('#signup-error-message').textContent  = 'Password must be at least 8 characters long'
+  //   }
+  
+  //   try {
+  //     const response = await fetch('/api/users', {
+  //       method: 'POST',
+  //       body: JSON.stringify({ username, email, password }),
+  //       headers: { 'Content-Type': 'application/json' },
+  //     });
+  
+  //     if (!response.ok) {
+  //       const data = await response.json();
+  //       throw new Error(data.message);
+  //     }
+  
+  //     document.location.replace('/');
+  //   } catch (error) {
+  //     displayError(error.message);
+  //   }
+  // });
+  
+  // const displayError = (message) => {
+  //   const errorEl = document.querySelector('#error');
+  //   errorEl.textContent = message;
+  // };
+  
+  // const isValidEmail = (email) => {
+  //   // Use a regular expression to validate the email address
+  //   const emailRegex = /^\S+@\S+\.\S+$/;
+  //   return emailRegex.test(email);
+  // };
+const postcommentbutton = document.querySelector(".postcommentbutton");
+  
+  postcommentbutton.addEventListener("click", async function(event) {
+
+    const postcommetData = document.querySelector("#commentData").value
+    event.preventDefault();
+    console.log("Button clicked!");
+    console.log(postcommetData)
+
+    if (postcommetData) {
+      const response = await fetch('/posts/:id', {
+        method: 'POST',
+        body: JSON.stringify(postcommetData),
+        headers: { 'Content-Type': 'application/json' },
+      })
+   
+    if (response.ok) {
+    } else {
+      alert('Failed to log in.');
     }
-  
-    function closeModal($el) {
-      $el.classList.remove('is-active');
-    }
-  
-    function closeAllModals() {
-      (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-        closeModal($modal);
-      });
-    }
-  
-    // Add a click event on buttons to open a specific modal
-    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-      const modal = $trigger.dataset.target;
-      const $target = document.getElementById(modal);
-  
-      $trigger.addEventListener('click', () => {
-        openModal($target);
-      });
-    });
-  
-    // Add a click event on various child elements to close the parent modal
-    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-      const $target = $close.closest('.modal');
-  
-      $close.addEventListener('click', () => {
-        closeModal($target);
-      });
-    });
-  
-    // Add a keyboard event to close all modals
-    document.addEventListener('keydown', (event) => {
-      const e = event || window.event;
-  
-      if (e.keyCode === 27) { // Escape key
-        closeAllModals();
-      }
-    });
 
-    $("#signup-btn").click(signUp)
-  });
-
-
-  async function signUp(){
-    await fetch("/signup")
   }
+  });
+  

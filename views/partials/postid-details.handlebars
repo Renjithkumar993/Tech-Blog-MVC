@@ -1,0 +1,63 @@
+
+<section>
+<div class="container">
+<div class="container m-5">
+<div class="card">
+  <div class="card-content">
+    <p class="title">
+      {{postidData.title}}
+    </p>
+    <p class="subtitle">
+      Posted by {{postidData.user.username}} on {{format_date  postidData.createdAt}} and {{time_ago postidData.createdAt}}
+    </p>
+    <div class="content">
+      {{postidData.content}}
+    </div>
+  </div>
+  <footer class="card-footer">
+    <form class="card-footer-item">
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <input class="input" type="text" placeholder="Add a comment..." id="commentData">
+        </div>
+        <div class="control">
+          <button class="button postcommentbutton is-link">Submit</button>
+        </div>
+      </div>
+    </form>
+  </footer>
+</div>
+</div>
+</div> 
+</section>
+
+
+<div class="container">
+<div class="container m-5">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        Comments
+      </p>
+    </header>
+    <div class="card-content">
+      <div class="content">
+
+        {{#each postidData.comments as |Comments|}}
+        <div class="media">
+          <div class="media-content">
+            <p>
+              <strong>{{Comments.user.username}}</strong>
+              <br>
+             {{Comments.text}}
+            </p>
+          </div>
+        </div>
+        <hr>
+        {{/each}}
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
