@@ -32,7 +32,6 @@ router.get("/post/:id", async (req, res) => {
       });
 
       const postidData = dbpostData.get({ plain: true });
-      console.log(postidData)
       res.render("postid", { postidData, loggedIn: req.session.loggedIn , dbUserDataid : req.session.user_id  });
     } catch (err) {
       console.log(err);
@@ -51,8 +50,6 @@ router.post("/post/:id", async (req, res) => {
         commenterUsername: req.session.user_id,
         commentpost: req.params.id,
       });
-
-      console.log(dbpostcomment);
       await res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       res.status(400).json({ error: err.message });
@@ -68,7 +65,6 @@ router.get("/dashboard",  async (req, res) => {
       },
     });
 
-    console.log(dbGetPost);
     const getPostData = dbGetPost.map((post) => post.get({ plain: true }));
     res.render("dashboard", { getPostData, loggedIn: req.session.loggedIn });
   } catch (err) {

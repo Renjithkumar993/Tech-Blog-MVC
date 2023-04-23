@@ -40,8 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const postcommetData = $("#commentData").val();
   
       event.preventDefault();
-      console.log("Button clicked!");
-      console.log(postcommetData);
   
       if (postcommetData) {
         const response = await fetch(`${window.location.pathname}`, {
@@ -49,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ postcommetData }),
           headers: { "Content-Type": "application/json" },
         });
-        console.log(response);
         if (response.ok) {
           window.location.href = `${window.location.pathname}`;
         } else {
@@ -136,9 +133,9 @@ $(".newpostrequest").click(async (event) => {
 
 $(".deletepost").click(async function (event) {
   const idiwant = $(this).attr("id");
-  console.log(idiwant);
+
   event.preventDefault();
-  console.log("i m therte");
+
 
   const response = await fetch(`/dashboard/${idiwant}`, {
     method: "DELETE",
@@ -155,7 +152,6 @@ $(".deletepost").click(async function (event) {
 $(".updatepost").click(async function (event) {
   const idiwant = $(this).closest(".container").find(".deletepost").attr("id");
   event.preventDefault();
-  console.log(idiwant);
   var texttitle = $(this).closest(".container").find("#texttitle").text();
   var textcontent = $(this).closest(".container").find("#textcontent").text();
   const sendDate = new Date();
@@ -177,7 +173,6 @@ $(".updatepost").click(async function (event) {
 
 $(".deleteComment").click(async function(event){
   const id = $(this).attr("id")
-  console.log(id)
   event.preventDefault();
   const response = await fetch(`/post/comment/${id}`, {
     method: "DELETE",
