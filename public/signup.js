@@ -20,18 +20,30 @@ const signupFormHandler = async (event) => {
       } else {
         const responseData = await response.json();
         const errors = responseData.errors;
+        
 
-        for(i = 0 ; i < errors.length ; i++) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'notification is-danger';
-            errorDiv.innerHTML = `
-              <button class="delete"></button>
-              <h1> ${errors[i].message}</h1>
-            `;
-            document.querySelector('.error-message').appendChild(errorDiv);
-        }   
-
-      
+        for (let i = 0; i < errors.length; i++) {
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'notification is-danger';
+        
+          const error_messages = {
+            'Validation isEmail on email failed': 'The email address you entered does not seem to be valid. Please try again with a valid email address.',
+            'Validation len on password failed' : "The password should be atleast 8 charachtors in length",
+            'email must be unique' : 'The email address you have entered already registered please login or signup with different email'
+          };
+          const errorMessage = error_messages[errors[i].message] || errors[i].message;
+        
+          errorDiv.innerHTML = `
+            <h1> ${errorMessage}</h1>
+          `;
+          document.querySelector('.error-message').appendChild(errorDiv);
+        
+          setTimeout(function() {
+            errorDiv.remove();
+          }, 4000);
+        } 
+        
+  
     }
   };
 }

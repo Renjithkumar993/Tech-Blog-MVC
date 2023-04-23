@@ -1,4 +1,5 @@
 
+
 <section>
 <div class="container">
 <div class="container m-5">
@@ -43,18 +44,42 @@
     <div class="card-content">
       <div class="content">
 
-        {{#each postidData.comments as |Comments|}}
-        <div class="media">
-          <div class="media-content">
-            <p>
-              <strong>{{Comments.user.username}}</strong>
-              <br>
-             {{Comments.text}}
-            </p>
-          </div>
+
+          {{#unless postidData.comments}}
+<h1 style="font-size: 1.5rem; font-weight: bold; color: #333; text-align: center; padding: 1rem;">No comments yet. Be the first to comment!</h1>
+
+  {{/unless}}
+  
+      
+{{#each postidData.comments as |comment|}}
+
+  <div class="media">
+    <div class="media-content">
+      <p>
+        <strong>{{format_date comment.createdAt}} : {{time_ago comment.createdAt}} @<span class="icon-text">
+  <span class="icon">
+  <i class="fa-solid fa-user"></i>
+  </span> {{comment.user.username}}   
+
+        </strong>
+        <br>
+        {{comment.text}}
+      </p>
+    </div>
+
+    <div class="media-right">
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-small is-danger deleteComment" id="{{comment.id}}">Delete</button>
+            </div>
         </div>
-        <hr>
-        {{/each}}
+    </div>
+
+
+  </div>
+  <hr>
+{{/each}}
+
 
       </div>
     </div>

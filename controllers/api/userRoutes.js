@@ -1,10 +1,8 @@
-const router = require('express').Router();
-const { User } = require('../../models');
+const router = require("express").Router();
+const { User } = require("../../models");
 
 // CREATE new user
-router.post('/', async (req, res) => {
-
-
+router.post("/", async (req, res) => {
   try {
     const dbUserData = await User.create({
       username: req.body.username,
@@ -18,8 +16,6 @@ router.post('/', async (req, res) => {
 
       res.status(200).json(dbUserData);
     });
-
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -27,7 +23,7 @@ router.post('/', async (req, res) => {
 });
 
 // Login
-router.post('/loging', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const dbUserData = await User.findOne({
       where: {
@@ -38,7 +34,7 @@ router.post('/loging', async (req, res) => {
     if (!dbUserData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
+        .json({ message: "The email address you entered was not found. Please check your email address and try again." });
       return;
     }
 
@@ -47,18 +43,16 @@ router.post('/loging', async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
+        .json({ message: "Incorrect password. Please try again!" });
       return;
     }
 
     req.session.save(() => {
-      req.session.loggedIn = true;
-
+      (req.session.loggedIn = true), (req.session.user_id = dbUserData.id);
 
       res
         .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
-        console.log("loggedin")
+        .json({ user: dbUserData, message: "You are now logged in!" });
     });
   } catch (err) {
     console.log(err);
@@ -67,7 +61,7 @@ router.post('/loging', async (req, res) => {
 });
 
 // Logout
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();

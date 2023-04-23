@@ -1,3 +1,7 @@
+
+const Handlebars = require('handlebars');
+
+
 module.exports = {
     format_time: (date) => {
       return date.toLocaleTimeString();
@@ -31,6 +35,6 @@ module.exports = {
       }
       return `${Math.floor(seconds)} second${Math.floor(seconds) === 1 ? '' : 's'} ago`;
     },
-  };
-
-  
+    
+    
+  }

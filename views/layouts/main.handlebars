@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./style.css">
     <title>Tech-BLog</title>
 </head>
@@ -17,21 +18,21 @@
 
 
 
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true" class="has-text-danger "></span>
-            <span aria-hidden="true" class="has-text-danger "></span>
-            <span aria-hidden="true"class="has-text-danger "></span>
+          <a role="button" class="navbar-burger " aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true" class="has-text-danger hamburger"></span>
+            <span aria-hidden="true" class="has-text-danger hamburger"></span>
+            <span aria-hidden="true"class="has-text-danger hamburger "></span>
           </a>
         </div>
       
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
                 {{#if loggedIn}}
-            <a class="navbar-item ">
+            <a class="navbar-item has-text-danger " href="/">
               Home
             </a>
    
-            <a class="navbar-item ">
+            <a class="navbar-item has-text-danger" href="/dashboard">
               DashBoard
             </a>
 {{/if}}
@@ -43,11 +44,11 @@
           
             {{#if loggedIn}}
   <a class="button is-primary" id="logout">
-    Log out
+   <strong> Log out</strong>
   </a>
 {{else}}
   <a class="button is-primary" href="./login">
-    Log in
+   <strong>Log in</strong> 
   </a>
         <a class="button is-primary" href="./signup">
                   <strong>Sign up</strong>
@@ -61,9 +62,6 @@
         </div>
       </nav>
      <main>
-{{#if loggedIn}}
-   <h1> loggedIn </h1>
-        {{/if}}
 
 
 
@@ -92,8 +90,14 @@
   {{#if loggedIn}}
   <script src="/logout.js"></script>
   {{/if}}
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="/script.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
 
     
 </body>
