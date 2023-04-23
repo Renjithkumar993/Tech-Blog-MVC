@@ -33,31 +33,32 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+})
 
-  const postcommentbutton = document.querySelector(".postcommentbutton");
-
-  postcommentbutton.addEventListener("click", async function (event) {
-    const postcommetData = document.querySelector("#commentData").value;
-
-    event.preventDefault();
-    console.log("Button clicked!");
-    console.log(postcommetData);
-
-    if (postcommetData) {
-      const response = await fetch(`${window.location.pathname}`, {
-        method: "POST",
-        body: JSON.stringify({ postcommetData }),
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log(response);
-      if (response.ok) {
-        window.location.href = `${window.location.pathname}`;
-      } else {
-        alert("can not post.");
+  $(document).ready(function() {
+    $(".postcommentbutton").click(async function(event) {
+      const postcommetData = $("#commentData").val();
+  
+      event.preventDefault();
+      console.log("Button clicked!");
+      console.log(postcommetData);
+  
+      if (postcommetData) {
+        const response = await fetch(`${window.location.pathname}`, {
+          method: "POST",
+          body: JSON.stringify({ postcommetData }),
+          headers: { "Content-Type": "application/json" },
+        });
+        console.log(response);
+        if (response.ok) {
+          window.location.href = `${window.location.pathname}`;
+        } else {
+          alert("can not post.");
+        }
       }
-    }
+    });
   });
-});
+  
 
 // document.querySelector('.signup-form').addEventListener('submit', async (event) => {
 //   event.preventDefault();
