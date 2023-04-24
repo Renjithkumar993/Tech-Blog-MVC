@@ -39,6 +39,7 @@
     <header class="card-header">
       <p class="card-header-title">
         Comments
+
       </p>
     </header>
     <div class="card-content">
@@ -49,8 +50,7 @@
 <h1 style="font-size: 1.5rem; font-weight: bold; color: #333; text-align: center; padding: 1rem;">No comments yet. Be the first to comment!</h1>
 
   {{/unless}}
-  
-      
+
 {{#each postidData.comments as |comment|}}
 
   <div class="media">
@@ -66,11 +66,10 @@
         {{comment.text}}
       </p>
     </div>
-
     <div class="media-right">
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-small is-danger deleteComment" id="{{comment.id}}">Delete</button>
+                <button class="button is-small is-danger deleteComment" id="{{comment.id}}" data-user-id="{{comment.commenterUsername}}">Delete</button>
             </div>
         </div>
     </div>

@@ -47,10 +47,6 @@ User.init(
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-      beforeDestroy(user, options) {
-        user.name = 'deleted user';
-        return user.save({ fields: ['name'] });
-      },
     },
   }
 );
