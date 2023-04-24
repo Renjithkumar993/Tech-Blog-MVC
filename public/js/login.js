@@ -14,7 +14,7 @@ const loginFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
   if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/home");
     } else {
       const responseData = await response.json();
       const errors = responseData.message
