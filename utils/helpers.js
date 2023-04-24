@@ -36,5 +36,7 @@ module.exports = {
       return `${Math.floor(seconds)} second${Math.floor(seconds) === 1 ? '' : 's'} ago`;
     },
     
-    
+  eq : (option1,option2) =>{
+    return option1 == option2
+  }
   }

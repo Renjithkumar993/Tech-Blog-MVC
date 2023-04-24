@@ -66,6 +66,10 @@
         {{comment.text}}
       </p>
     </div>
+{{#if (eq comment.commenterUsername ../user_id)}}  {{! works! }}
+ 
+
+
     <div class="media-right">
         <div class="field is-grouped">
             <div class="control">
@@ -74,7 +78,7 @@
         </div>
     </div>
 
-
+{{/if}}
   </div>
   <hr>
 {{/each}}
