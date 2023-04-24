@@ -44,9 +44,18 @@
             <div class="navbar-item">
               <div class="buttons">
           
-            {{#if loggedIn}}
+{{#if loggedIn}}
+  <div class="navbar-item">
+    <span class="icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span >{{username}}</span>
+  </div>
   <a class="button is-primary" id="logout">
    <strong> Log out</strong>
+  </a>
+  <a class="button is-primary deleteaccount" id="{{user_id}}">
+   <strong> Delete Account</strong>
   </a>
 {{else}}
   <a class="button is-primary" href="./login">

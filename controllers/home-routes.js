@@ -12,7 +12,7 @@ router.get("/",async (req, res) => {
     });
 
     const postData = dbPostData.map((post) => post.get({ plain: true }));
-    res.render("homepage", { postData, loggedIn: req.session.loggedIn });
+    res.render("homepage", { postData, loggedIn: req.session.loggedIn , username :req.session.username,user_id : req.session.user_id });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -32,7 +32,7 @@ router.get("/post/:id", async (req, res) => {
       });
 
       const postidData = dbpostData.get({ plain: true });
-      res.render("postid", { postidData, loggedIn: req.session.loggedIn , dbUserDataid : req.session.user_id  });
+      res.render("postid", { postidData, loggedIn: req.session.loggedIn , dbUserDataid : req.session.user_id,username :req.session.username,user_id : req.session.user_id  });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -66,7 +66,7 @@ router.get("/dashboard",  async (req, res) => {
     });
 
     const getPostData = dbGetPost.map((post) => post.get({ plain: true }));
-    res.render("dashboard", { getPostData, loggedIn: req.session.loggedIn });
+    res.render("dashboard", { getPostData, loggedIn: req.session.loggedIn,username :req.session.username ,user_id : req.session.user_id});
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server error" });
@@ -142,7 +142,25 @@ router.delete("/post/comment/:id", async (req, res) => {
   }
 });
 
-router.post("./login");
+
+
+router.delete('/delete/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    await user.destroy();
+
+
+    res.status(200).json("user deleted successfully")
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
 
 router.get("/login", (req, res) => {
   res.render("login");

@@ -12,10 +12,12 @@ router.post("/", async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-
+    
       res.status(200).json(dbUserData);
     });
+    
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -23,7 +25,7 @@ router.post("/", async (req, res) => {
 });
 
 // Login
-router.post("/login", async (req, res) => {
+router.post("/logingg", async (req, res) => {
   try {
     const dbUserData = await User.findOne({
       where: {
