@@ -28,6 +28,7 @@ To use this site:
 
 # Walkthrough Video
 To see the application in action , please watch the following walkthrough video:
+https://techblogclub.herokuapp.com/
 https://drive.google.com/file/d/1sjylQV_YgJSmgkN6x4hoZboQ7eUyus2Z/view
 # Technologies Used
 * HTML
